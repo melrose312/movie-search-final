@@ -7,15 +7,15 @@ function Landing() {
       <header>
         <div className="header__container">
           <div className="header__description">
-            <h2> Search a Movie Title</h2>
+            <h2> Search A Movie Title</h2>
             <div className="search__wrapper">
               <input 
                 type="text" 
                 className="search__input" 
                 placeholder="Search by Title or Keyword..." 
               />
-              <button className="search__btn"> Search
-                <FontAwesomeIcon icon=""/>
+              <button className="search__btn">
+                <FontAwesomeIcon icon="fa-solid fa-magnifying-glass"/>
               </button>
             </div>
             

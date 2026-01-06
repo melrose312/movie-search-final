@@ -11,33 +11,22 @@ function Highlights() {
                 Welcome to Flicktionary!</h2>   
             </div>
             <div className="highlight__wrapper">
-                <div className="highlight">
-                    <div className="highlight__img">
-                        <FontAwesomeIcon icon=""/>
-                    </div>
-                    <h3 className="highlight__subtitle">
-                       Instant Search Results 
-                    </h3>
-                    <p className="highlight__para">Enter Text Here</p>
-                </div>
-                <div className="highlight">
-                    <div className="highlight__img">
-                        <FontAwesomeIcon icon=""/>
-                    </div>
-                    <h3 className="highlight__subtitle">
-                       Search by title or year
-                    </h3>
-                    <p className="highlight__para">Enter Text Here</p>
-                </div>
-                <div className="highlight">
-                    <div className="highlight__img">
-                        <FontAwesomeIcon icon=""/>
-                    </div>
-                    <h3 className="highlight__subtitle">
-                       Explore trending movies
-                    </h3>
-                    <p className="highlight__para">Enter Text Here</p>
-                </div>
+                
+                    <Highlight
+                    icon={<FontAwesomeIcon icon="fa-solid fa-bolt"/>}
+                    title='Instant Search Results'
+                    para='Enter Text Here'
+                     />
+                    <Highlight
+                    icon={<FontAwesomeIcon icon="fa-solid fa-film"/>}
+                    title='Search By Title or Year'
+                    para='Enter Text Here'
+                     />
+                    <Highlight
+                    icon={ <FontAwesomeIcon icon="fa-solid fa-video"/>}
+                    title='Explore Trending Movies'
+                    para='Enter Text Here'
+                     />
             </div>
         </div>
     </section>
