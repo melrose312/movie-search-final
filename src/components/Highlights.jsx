@@ -16,7 +16,7 @@ function Highlights() {
                         <FontAwesomeIcon icon=""/>
                     </div>
                     <h3 className="highlight__subtitle">
-                       Fast, easy movie discovery 
+                       Instant Search Results 
                     </h3>
                     <p className="highlight__para">Enter Text Here</p>
                 </div>
