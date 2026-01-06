@@ -15,17 +15,17 @@ function Highlights() {
                     <Highlight
                     icon={<FontAwesomeIcon icon="fa-solid fa-bolt"/>}
                     title='Instant Search Results'
-                    para='Enter Text Here'
+                    para='Hundreds of Titles and Genres'
                      />
                     <Highlight
                     icon={<FontAwesomeIcon icon="fa-solid fa-film"/>}
                     title='Search By Title or Year'
-                    para='Enter Text Here'
+                    para='Movies and Series, Old and New'
                      />
                     <Highlight
                     icon={ <FontAwesomeIcon icon="fa-solid fa-video"/>}
                     title='Explore Trending Movies'
-                    para='Enter Text Here'
+                    para='Discover the latest releases and trending titles'
                      />
             </div>
         </div>

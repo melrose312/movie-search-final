@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Landing() {
   return (
+    <div className="container">
     <section id="landing">
       <header>
         <div className="header__container">
@@ -26,6 +27,7 @@ function Landing() {
         </div>
       </header>
     </section>
+    </div>
   );
 }
 
