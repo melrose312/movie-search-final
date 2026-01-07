@@ -16,7 +16,7 @@ function Movies() {
   return (
     <div className="container">
       <section id="movies">
-        {/* Search Section */}
+        {/* SEARCH INPUT */}
         <header className="movies__header">
           <h2 className="movies__title">Search Results</h2>
           <div className="search__wrapper">
@@ -31,7 +31,7 @@ function Movies() {
           </div>
         </header>
 
-        {/* Movies Grid */}
+        {/* MOVIES GRID */}
         {movies.length === 0 ? (
           <p style={{ color: '#d4af37', textAlign: 'center', fontSize: '18px' }}>
             Search for a movie to see results
