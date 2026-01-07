@@ -1,18 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
-import axios from "axios"
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
 
 function Movies() {
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
 
-  async function fetchMovies() {
-    const { data } = await axios.get("https://www.omdbapi.com/?apikey=4c277607&s=fast");
+  async function fetchMovies(query) {
+    if (!query || !query.trim()) return;
+    const { data } = await axios.get(
+      `https://www.omdbapi.com/?apikey=4c277607&s=${query}`
+    );
     setMovies(data.Search || []);
-    console.log(data)
+    console.log(data);
   }
+
+  // Check for search param from URL on page load
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    const searchFromUrl = searchParams.get("search");
+    if (searchFromUrl) {
+      setSearchQuery(searchFromUrl);
+      fetchMovies(searchFromUrl);
+    }
+  }, [searchParams]);
   return (
     <div className="container">
       <section id="movies">
@@ -24,16 +36,21 @@ function Movies() {
               type="text"
               className="search__input"
               placeholder="Search by Title or Keyword..."
+              value={searchQuery}
+              onChange={(event) => setSearchQuery(event.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && fetchMovies(searchQuery)}
             />
-            <button className="search__btn">
+            <button className="search__btn" onClick={() => fetchMovies(searchQuery)}>
               <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
             </button>
           </div>
         </header>
 
         {/* MOVIES GRID */}
-        {movies.length === 0 ? (
-          <p style={{ color: '#d4af37', textAlign: 'center', fontSize: '18px' }}>
+        {searchQuery.length === 0 ? (
+          <p
+            style={{ color: "#d4af37", textAlign: "center", fontSize: "18px" }}
+          >
             Search for a movie to see results
           </p>
         ) : (
