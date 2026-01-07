@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  animation: fadeIn 1.5s ease-out;
 }
 
 html {
@@ -25,7 +26,9 @@ body {
 }
 
 .container {
-  padding: 96px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 24px;
 }
 
 
@@ -118,6 +121,7 @@ nav {
   animation: floatGlow 3s ease-in-out infinite;
 }
 
+/* SEARCH HEADING GLOW & FLOAT EFFECT */
 @keyframes floatGlow {
 
   0%,
@@ -137,6 +141,22 @@ nav {
   justify-content: center;
   align-items: center;
   padding-top: 50px;
+}
+
+.header__img--wrapper img {
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* SEARCH BAR */
@@ -218,6 +238,7 @@ nav {
   animation: subtleGlow 4s ease-in-out infinite;
 }
 
+/* WELCOME TEXT GLOW EFFECT */
 @keyframes subtleGlow {
 
   0%,
@@ -233,13 +254,15 @@ nav {
 
 .highlight__wrapper {
   display: flex;
-  flex-wrap: wrap;
+  gap: 48px;
+  justify-content: center;
   margin-bottom: 150px;
+  animation: fadeIn 1.5s ease-out;
 }
 
 .highlight {
   padding: 32px 24px;
-  width: calc(100% / 3);
+  flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -275,6 +298,7 @@ nav {
   margin-bottom: 24px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  animation: fadeIn 1.5s ease-out;
 }
 
 .highlight:hover .highlight__img {
@@ -286,4 +310,154 @@ nav {
   margin-bottom: 16px;
   text-align: center;
   color: #d4af37;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* MOVIES PAGE */
+
+#movies {
+  animation: fadeIn 1s ease-out;
+}
+
+.movies__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.movies__title {
+  color: #d4af37;
+  font-size: 48px;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  animation: floatGlow 3s ease-in-out infinite;
+}
+
+.movies__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.movie__card {
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.8) 0%, rgba(13, 13, 13, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.movie__card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.movie__img--wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+}
+
+.movie__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.movie__card:hover .movie__img {
+  transform: scale(1.05);
+}
+
+.movie__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 16px;
+}
+
+.movie__card:hover .movie__overlay {
+  opacity: 1;
+}
+
+.movie__rating {
+  background: linear-gradient(135deg, #722f37 0%, #5a252c 100%);
+  color: #d4af37;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.movie__rating svg {
+  color: #d4af37;
+}
+
+.movie__info {
+  padding: 16px;
+  text-align: center;
+}
+
+.movie__title {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.movie__year {
+  color: #d4af37;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Responsive Movies Grid */
+@media (max-width: 900px) {
+  .movies__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .movies__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .movies__title {
+    font-size: 32px;
+  }
 }

@@ -41,7 +41,7 @@ const Nav = () => {
             Contact</a>
           </li>
         </ul> */}
-        
+
       </div>
     </nav>
   );
