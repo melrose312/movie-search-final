@@ -7,7 +7,6 @@ const Nav = () => {
       <div className="nav__container">
         <a href="/" className="nav__logo">
           <img src={FlickLogo} className="nav__logo--img" alt="" />
-          {/* <span className="nav__logo--text">Flicktionary</span> */}
         </a>
         <ul className="nav__links">
           <li className="nav__list">

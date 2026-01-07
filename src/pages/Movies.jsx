@@ -1,8 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios"
 
 function Movies() {
   const [movies, setMovies] = useState([]);
+
+  async function fetchMovies() {
+    const { data } = await axios.get("https://www.omdbapi.com/?apikey=4c277607&s=fast");
+    setMovies(data.Search || []);
+    console.log(data)
+  }
+  useEffect(() => {
+    fetchMovies();
+  }, []);
   return (
     <div className="container">
       <section id="movies">
@@ -29,22 +39,17 @@ function Movies() {
         ) : (
           <div className="movies__grid">
             {movies.map((movie) => (
-              <div key={movie.id} className="movie__card">
+              <div key={movie.imdbID} className="movie__card">
                 <figure className="movie__img--wrapper">
                   <img
-                    src={movie.poster}
-                    alt={movie.title}
+                    src={movie.Poster}
+                    alt={movie.Title}
                     className="movie__img"
                   />
-                  <div className="movie__overlay">
-                    <span className="movie__rating">
-                      <FontAwesomeIcon icon="fa-solid fa-star" /> {movie.rating}
-                    </span>
-                  </div>
                 </figure>
                 <div className="movie__info">
-                  <h3 className="movie__title">{movie.title}</h3>
-                  <p className="movie__year">{movie.year}</p>
+                  <h3 className="movie__title">{movie.Title}</h3>
+                  <p className="movie__year">{movie.Year}</p>
                 </div>
               </div>
             ))}
