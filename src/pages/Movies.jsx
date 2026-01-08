@@ -56,38 +56,41 @@ function Movies() {
         </header>
 
         {/* MOVIES GRID */}
-        {searchQuery.length === 0 ? (
-          <p
-            style={{ color: "#d4af37", textAlign: "center", fontSize: "18px" }}
-          >
-            Search for a movie to see results
-          </p>
-        ) : loading ? (
-          <div className="loading__wrapper">
-            <div className="loading__spinner"></div>
-            <p className="loading__text">Searching for movies...</p>
-          </div>
-        ) : (
-          <div className="movies__grid">
-            {movies.slice(0, 9).map((movie) => (
-              <Link to={`/Movie/${movie.imdbID}`} key={movie.imdbID} className="movie__card">
-                <figure className="movie__img--wrapper">
-                  <img
-                    src={movie.Poster}
-                    alt={movie.Title}
-                    className="movie__img"
-                  />
-                </figure>
-                <div className="movie__info">
-                  <h3 className="movie__title">{movie.Title}</h3>
-                  <p className="movie__year">{movie.Year}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
+        <div className="movies__results">
+          {searchQuery.length === 0 ? (
+            <p
+              style={{ color: "#d4af37", textAlign: "center", fontSize: "18px" }}
+            >
+              Search for a movie to see results
+            </p>
+          ) : loading ? (
+            <div className="loading__wrapper">
+              <div className="loading__spinner"></div>
+              <p className="loading__text">Searching...</p>
+            </div>
+          ) : (
+            <div className="movies__grid">
+              {movies.slice(0, 9).map((movie) => (
+                <Link to={`/Movie/${movie.imdbID}`} key={movie.imdbID} className="movie__card">
+                  <figure className="movie__img--wrapper">
+                    <img
+                      src={movie.Poster}
+                      alt={movie.Title}
+                      className="movie__img"
+                    />
+                  </figure>
+                  <div className="movie__info">
+                    <h3 className="movie__title">{movie.Title}</h3>
+                    <p className="movie__year">{movie.Year}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
       </section>
     </div>
+
   );
 }
 

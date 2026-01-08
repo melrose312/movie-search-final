@@ -180,8 +180,9 @@ nav {
   background-color: #fff;
   color: #333;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  /* Use min-height to keep the search bar the same size across webpages */
+  /* Use min-height and min-width to keep the search bar the same size across webpages */
   min-height: 60px;
+  min-width: 400px;
 }
 
 .search__input::placeholder {
@@ -332,7 +333,7 @@ nav {
   animation: fadeIn 1s ease-out;
 }
 
-/* Loading State */
+/* LOADING STATE */
 .loading__wrapper {
   display: flex;
   flex-direction: column;
@@ -351,6 +352,7 @@ nav {
   animation: spin 1s linear infinite;
 }
 
+/* LOADING STATE SPINNER ANIMATION */
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -381,13 +383,21 @@ nav {
   margin-bottom: 32px;
 }
 
+.movies__results {
+  min-height: 60px;
+  min-width: 400px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: flex-start; */
+}
+
 .movies__grid {
   display: flex;
   flex-wrap: wrap;
   gap: 32px;
   max-width: 1000px;
   justify-content: center;
-  margin: 0 auto;
+  margin: 48px auto;
 }
 
 .movie__card {
