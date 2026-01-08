@@ -1,45 +1,28 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import FlickLogo from "../assets/Flick Logo.resize.png";
 
 const Nav = () => {
   return (
     <nav>
       <div className="nav__container">
-        <a href="/" className="nav__logo">
+        <Link to="/" className="nav__logo">
           <img src={FlickLogo} className="nav__logo--img" alt="" />
-        </a>
+        </Link>
         <ul className="nav__links">
           <li className="nav__list">
-            <a href="/" className="nav__link">
+            <Link to="/" className="nav__link">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav__list">
-            <a href="/" className="nav__link">
+            <Link to="/Movies" className="nav__link">
               Search
-            </a>
+            </Link>
           </li>
-          <a href="/contact" className="nav__contact">
+          <span className="nav__contact" onClick={(event) => event.preventDefault()}>
             Contact
-          </a>
+          </span>
         </ul>
-        {/* <button>
-          <FontAwesomeIcon icon="bars" />
-        </button>
-        <ul className="menu__links">
-          <li className="menu__list">
-            <a href="/search" className="menu__link">
-            Home</a>
-          </li>
-          <li className="menu__list">
-            <a href="/search" className="menu__link">
-            Search</a>
-          </li>
-          <li className="menu__list">
-            <a href="/search" className="menu__link">
-            Contact</a>
-          </li>
-        </ul> */}
 
       </div>
     </nav>

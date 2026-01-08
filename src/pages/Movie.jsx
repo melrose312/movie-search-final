@@ -86,7 +86,7 @@ function Movie() {
                     {/* Movie Poster */}
                     <figure className="movie-detail__poster">
                         <img
-                            src={movie.Poster !== "N/A" ? movie.Poster : "https://via.placeholder.com/300x450?text=No+Poster"}
+                            src={movie.Poster !== "N/A" ? movie.Poster : "https://www.kindpng.com/picc/m/18-189751_movie-placeholder-hd-png-download.png"}
                             alt={movie.Title}
                         />
                     </figure>
