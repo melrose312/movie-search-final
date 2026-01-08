@@ -55,7 +55,7 @@ function Movie() {
         return (
             <div className="container">
                 <section id="movie-detail">
-                    <p className="loading-text">Loading movie details...</p>
+                    <p className="loading__text">Loading movie details...</p>
                 </section>
             </div>
         );
@@ -65,7 +65,7 @@ function Movie() {
         return (
             <div className="container">
                 <section id="movie-detail">
-                    <p className="error-text">Movie not found.</p>
+                    <p className="error__text">Movie not found.</p>
                     <Link to="/Movies" className="back-link">
                         <FontAwesomeIcon icon="fa-solid fa-arrow-left" /> Search Movies
                     </Link>
