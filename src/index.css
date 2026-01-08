@@ -165,6 +165,7 @@ nav {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto 40px;
 }
@@ -179,6 +180,8 @@ nav {
   background-color: #fff;
   color: #333;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  /* Use min-height to keep the search bar the same size across webpages */
+  min-height: 60px;
 }
 
 .search__input::placeholder {
@@ -329,9 +332,45 @@ nav {
   animation: fadeIn 1s ease-out;
 }
 
+/* Loading State */
+.loading__wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 20px;
+}
+
+.loading__spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(212, 175, 55, 0.2);
+  border-top: 4px solid #d4af37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading__text {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: 500;
+}
+
 .movies__header {
   text-align: center;
   margin-bottom: 48px;
+  width: 100%;
 }
 
 .movies__title {
@@ -340,7 +379,6 @@ nav {
   letter-spacing: 2px;
   font-weight: bold;
   margin-bottom: 32px;
-  animation: floatGlow 3s ease-in-out infinite;
 }
 
 .movies__grid {
@@ -360,6 +398,7 @@ nav {
   transition: all 0.3s ease;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   animation: fadeIn 0.8s ease-out;
+  text-decoration: none;
   /* Set width to fit 3 cards with gaps, 64px = 2 gaps */
   flex: 0 0 calc((100% - 64px) / 3)
 }
@@ -393,7 +432,7 @@ nav {
 }
 
 
-.movie__card:hover  {
+.movie__card:hover {
   opacity: 1;
 }
 
@@ -453,5 +492,194 @@ nav {
 
   .fa-magnifying-glass {
     font-size: 24px;
+  }
+}
+
+/* MOVIE DETAIL PAGE */
+
+#movie-detail {
+  animation: fadeIn 1s ease-out;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: #fff;
+  transform: translateX(-4px);
+}
+
+.loading-text,
+.error-text {
+  color: #d4af37;
+  text-align: center;
+  font-size: 20px;
+  padding: 48px;
+}
+
+.movie-detail__content {
+  display: flex;
+  gap: 48px;
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.8) 0%, rgba(13, 13, 13, 0.9) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.movie-detail__poster {
+  flex-shrink: 0;
+  width: 300px;
+  height: fit-content;
+  align-self: flex-start;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.movie-detail__poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie-detail__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.movie-detail__title {
+  color: #fff;
+  font-size: 36px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.movie-detail__section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.movie-detail__label {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.movie-detail__plot {
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.movie-detail__actors {
+  color: #d4af37;
+  font-size: 16px;
+}
+
+.movie-detail__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.meta__row {
+  display: flex;
+  gap: 16px;
+}
+
+.meta__label {
+  color: #fff;
+  font-weight: 600;
+  min-width: 100px;
+  font-size: 14px;
+}
+
+.meta__value {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.movie-detail__ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.rating__item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rating__source {
+  color: #ccc;
+  font-size: 14px;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  font-size: 20px;
+}
+
+.star--filled {
+  color: #d4af37;
+}
+
+.star--half {
+  color: #d4af37;
+}
+
+.star--empty {
+  color: #555;
+}
+
+/* MOVIE DETAIL RESPONSIVE */
+@media (max-width: 768px) {
+  .movie-detail__content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-detail__poster {
+    width: 250px;
+  }
+
+  .movie-detail__title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .movie-detail__info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .meta__row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .meta__label {
+    min-width: auto;
   }
 }

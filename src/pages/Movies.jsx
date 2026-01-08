@@ -1,23 +1,31 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import axios from "axios";
 
 function Movies() {
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   async function fetchMovies(query) {
     if (!query || !query.trim()) return;
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=4c277607&s=${query}`
-    );
-    setMovies(data.Search || []);
-    console.log(data);
+    setLoading(true);
+    try {
+      const [{ data }] = await Promise.all([
+        axios.get(`https://www.omdbapi.com/?apikey=4c277607&s=${query}`),
+        new Promise(resolve => setTimeout(resolve, 1000))
+      ]);
+      setMovies(data.Search || []);
+    } catch (error) {
+      console.error("Error fetching movies:", error);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  // Check for search param from URL on page load
+  // CHECK FOR SEARCH PARAM FROM URL ON PAGE LOAD
   useEffect(() => {
     const searchFromUrl = searchParams.get("search");
     if (searchFromUrl) {
@@ -25,6 +33,7 @@ function Movies() {
       fetchMovies(searchFromUrl);
     }
   }, [searchParams]);
+
   return (
     <div className="container">
       <section id="movies">
@@ -53,10 +62,15 @@ function Movies() {
           >
             Search for a movie to see results
           </p>
+        ) : loading ? (
+          <div className="loading__wrapper">
+            <div className="loading__spinner"></div>
+            <p className="loading__text">Searching for movies...</p>
+          </div>
         ) : (
           <div className="movies__grid">
-            {movies.map((movie) => (
-              <div key={movie.imdbID} className="movie__card">
+            {movies.slice(0, 9).map((movie) => (
+              <Link to={`/Movie/${movie.imdbID}`} key={movie.imdbID} className="movie__card">
                 <figure className="movie__img--wrapper">
                   <img
                     src={movie.Poster}
@@ -68,7 +82,7 @@ function Movies() {
                   <h3 className="movie__title">{movie.Title}</h3>
                   <p className="movie__year">{movie.Year}</p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
